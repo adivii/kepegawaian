@@ -26,7 +26,7 @@ if(!isset($_SESSION['role'])){
     <script src="../script/script.js"></script>
 </head>
 <body>
-    <nav class="navbar bg-transparent">
+    <nav class="navbar bg-transparent sticky-top">
         <div class="container-fluid">
             <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon"></span>
@@ -57,11 +57,15 @@ if(!isset($_SESSION['role'])){
                 <hr>
             </div>
             <div class="mt-3" id="add-hrd">
-                <a class="nav-link" href="#">Buat Akun HRD</a>
+                <a class="nav-link" href="./register-hrd.php">Buat Akun HRD</a>
                 <hr>
             </div>
             <div class="mt-3" id="list-calon">
-                <a class="nav-link" href="#">List Calon Pegawai</a>
+                <a class="nav-link" href="./list-pegawai.php">List Calon Pegawai</a>
+                <hr>
+            </div>
+            <div class="mt-3" id="data-calon-input">
+                <a class="nav-link" href="./calon-pegawai-input.php">Edit Data</a>
                 <hr>
             </div>
             <div class="mt-3">

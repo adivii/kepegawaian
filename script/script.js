@@ -28,3 +28,15 @@ function load_list_pegawai(){
     xmlhttp.open("GET", "../script/get-list-pegawai.php", true);
     xmlhttp.send();
 }
+
+function load_posisi_available(status){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+            document.getElementById("posisi").innerHTML = this.responseText;
+        };
+    };
+
+    xmlhttp.open("GET", "../script/get-posisi.php?status=" + status, true);
+    xmlhttp.send();
+}

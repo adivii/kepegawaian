@@ -25,9 +25,9 @@ if(!isset($_SESSION['role'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="../script/script.js"></script>
 </head>
-<body class="bg-home">
+<body>
     <!-- As a link -->
-    <nav class="navbar navbar-dark bg-transparent">
+    <nav class="navbar bg-transparent sticky-top">
         <div class="container-fluid">
             <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon"></span>
@@ -61,7 +61,7 @@ if(!isset($_SESSION['role'])){
                 <hr>
             </div>
             <div class="mt-3" id="data-calon-input">
-                <a class="nav-link" href="#">Input Data</a>
+                <a class="nav-link" href="./calon-pegawai-input.php">Edit Data</a>
                 <hr>
             </div>
             <div class="mt-3">

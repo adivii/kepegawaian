@@ -1,3 +1,24 @@
+<?php
+
+ob_start();
+
+session_start();
+
+if(!(isset($_SESSION['role']) && isset($_SESSION['username']))){
+    header("location: ../index.php");
+}else{
+    if($_SESSION['role'] != "calon"){
+        header("location: ../index.php");
+    }else{
+        include "../script/connection.php";
+
+        $user = $_SESSION['username'];
+        $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `calon_pegawai` WHERE `username`='$user';"));
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,32 +38,20 @@
     <div class="card login-box" style="width: 30rem;">
         <img src="https://images.pexels.com/photos/1036808/pexels-photo-1036808.jpeg?cs=srgb&dl=pexels-dominika-roseclay-1036808.jpg&fm=jpg&w=640&h=410" class="card-img-top" height="250px">
         <div class="card-body">
-            <h5 class="card-title">Register Account</h5>
+            <h5 class="card-title">Update Account</h5>
             <p class="card-text">
-                <form method="post" action="../script/add-account.php">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password-re" class="form-label">Re-Type Password</label>
-                        <input type="password" class="form-control" id="password-re" name="password-re" required>
-                    </div>
+                <form method="post" action="../script/update-calon-pegawai-account.php">
                     <div class="mb-3">
                         <label for="nik" class="form-label">NIK</label>
-                        <input type="number" class="form-control" id="nik" name="nik" required>
+                        <input type="number" class="form-control" id="nik" name="nik" value="<?= $data['nik'] ?>" required>
                     </div>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required>
+                        <input type="text" class="form-control" id="nama" name="nama" value="<?= $data['nama'] ?>" required>
                     </div>
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
-                        <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
+                        <textarea class="form-control" id="alamat" name="alamat" rows="3"><?= $data['alamat'] ?></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="posisi" class="form-label">Posisi yang Dilamar</label>
@@ -52,21 +61,18 @@
                     </div>
                     <div class="mb-3">
                         <label for="tahun-lulus" class="form-label">Tahun Lulus</label>
-                        <input type="number" class="form-control" id="tahun-lulus" name="tahun-lulus" required>
+                        <input type="number" class="form-control" id="tahun-lulus" name="tahun-lulus" value="<?= $data['tahun_lulus'] ?>" required>
                     </div>
                     <div class="mb-3">
                         <label for="pendidikan-terakhir" class="form-label">Pendidikan Terakhir</label>
                         <select class="form-select" id="pendidikan-terakhir" name="pendidikan-terakhir" aria-label="Default select example">
-                            <option value="SD">SD</option>
-                            <option value="SMP">SMP</option>
-                            <option value="SMA">SMA</option>
-                            <option value="S1">S1</option>
-                            <option value="S2">S2</option>
-                            <option value="S3">S3</option>
+                            <option value="SD" <?php if($data['pendidikan_terakhir'] == "SD"){echo "selected";} ?>>SD</option>
+                            <option value="SMP" <?php if($data['pendidikan_terakhir'] == "SMP"){echo "selected";} ?>>SMP</option>
+                            <option value="SMA" <?php if($data['pendidikan_terakhir'] == "SMA"){echo "selected";} ?>>SMA</option>
+                            <option value="S1" <?php if($data['pendidikan_terakhir'] == "S1"){echo "selected";} ?>>S1</option>
+                            <option value="S2" <?php if($data['pendidikan_terakhir'] == "S2"){echo "selected";} ?>>S2</option>
+                            <option value="S3" <?php if($data['pendidikan_terakhir'] == "S3"){echo "selected";} ?>>S3</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        Already Have Account? <a href="../index.php" class="link-info" style="text-decoration: none;">Login Here</a>
                     </div>
                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </form>
@@ -75,7 +81,7 @@
     </div>
 
     <script>
-        load_posisi_available("input");
+        load_posisi_available("edit");
     </script>
 </body>
 </html>

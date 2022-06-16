@@ -29,8 +29,8 @@ if(!isset($_SESSION['role'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="../script/script.js"></script>
 </head>
-<body class="bg-home">
-    <nav class="navbar navbar-dark bg-transparent">
+<body>
+    <nav class="navbar bg-transparent sticky-top">
         <div class="container-fluid">
             <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon"></span>
@@ -39,8 +39,8 @@ if(!isset($_SESSION['role'])){
     </nav>
 
     <div class="container" style="margin-left: 100px; margin-top: 50px">
-        <p class="text-light" style="font-size: 24px;font-weight: bold;margin-bottom: 20px">List Pegawai</p>
-        <table class="table table-dark">
+        <p style="font-size: 24px;font-weight: bold;margin-bottom: 20px">List Calon Pegawai</p>
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col" class="bg-transparent">NIK</th>
@@ -51,7 +51,7 @@ if(!isset($_SESSION['role'])){
                     <th scope="col" class="bg-transparent">Pendidikan Terakhir</th>
                 </tr>
             </thead>
-            <tbody id="list-calon-pegawai">
+            <tbody class="table-group-divider" id="list-calon-pegawai">
                 
             </tbody>
         </table>
@@ -71,11 +71,15 @@ if(!isset($_SESSION['role'])){
                 <hr>
             </div>
             <div class="mt-3" id="add-hrd">
-                <a class="nav-link" href="#">Buat Akun HRD</a>
+                <a class="nav-link" href="./register-hrd.php">Buat Akun HRD</a>
                 <hr>
             </div>
             <div class="mt-3" id="list-calon">
-                <a class="nav-link" href="#">List Calon Pegawai</a>
+                <a class="nav-link" href="./list-pegawai.php">List Calon Pegawai</a>
+                <hr>
+            </div>
+            <div class="mt-3" id="data-calon-input">
+                <a class="nav-link" href="./calon-pegawai-input.php">Edit Data</a>
                 <hr>
             </div>
             <div class="mt-3">

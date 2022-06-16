@@ -5,18 +5,14 @@ ob_start();
 include "./connection.php";
 
 if(isset($_POST['submit'])){
-    $user = mysqli_real_escape_string($conn, str_replace(' ','',$_POST['username']));
-    $pass = mysqli_real_escape_string($conn, str_replace(' ','',$_POST['password']));
-    $pass_re = mysqli_real_escape_string($conn, str_replace(' ','',$_POST['password-re']));
     $nik = mysqli_real_escape_string($conn, trim($_POST['nik']));
     $nama = mysqli_real_escape_string($conn, trim($_POST['nama']));
     $alamat = mysqli_real_escape_string($conn, trim($_POST['alamat']));
     $posisi = $_POST['posisi'];
-    $tahun = trim($_POST['tahun-lulus']);
-    $pendidikan = $_POST['pendidikan-terakhir'];
+    $tahun = date $_POST['tahun-lulus'];
 
     // Check If Empty
-    if($user == "" || $pass == "" || $pass_re == "" || $nik == "" || $nama = "" || $alamat == "" || $tahun == ""){
+    if($user == "" || $pass == "" || $pass_re == ""){
         echo "<script>window.alert(\"Field Tidak Boleh Kosong\");</script>";
     }else{
         // Check If Password and Password-Re are different
