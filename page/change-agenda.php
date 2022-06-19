@@ -9,6 +9,11 @@ if(!(isset($_SESSION['role']) && isset($_SESSION['username']))){
 }else{
     if($_SESSION['role'] != "hrd"){
         header("location: ../index.php");
+    }else{
+        $key = $_GET['key'];
+        include "../script/connection.php";
+
+        $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `agenda` WHERE `id_agenda`='$key';")); 
     }
 }
 
@@ -43,24 +48,28 @@ if(!(isset($_SESSION['role']) && isset($_SESSION['username']))){
     <div class="card login-box align-self-center" style="width: 30rem;">
         <img src="https://images.pexels.com/photos/1036808/pexels-photo-1036808.jpeg?cs=srgb&dl=pexels-dominika-roseclay-1036808.jpg&fm=jpg&w=640&h=410" class="card-img-top" height="250px">
         <div class="card-body">
-            <h5 class="card-title">Input Agenda</h5>
+            <h5 class="card-title">Edit Agenda</h5>
             <p class="card-text">
-                <form method="post" action="../script/add-agenda.php">
+                <form method="post" action="../script/update-agenda.php">
+                    <div class="mb-3">
+                        <label for="agenda-id" class="form-label">ID</label>
+                        <input type="text" class="form-control" id="agenda-id" name="agenda-id" value="<?= $key ?>" readonly>
+                    </div>
                     <div class="mb-3">
                         <label for="agenda-date" class="form-label">Tanggal</label>
-                        <input type="date" class="form-control" id="agenda-date" name="agenda-date">
+                        <input type="date" class="form-control" id="agenda-date" name="agenda-date" value="<?= $data['tanggal'] ?>">
                     </div>
                     <div class="mb-3">
                         <label for="agenda-time" class="form-label">Waktu</label>
-                        <input type="time" class="form-control" id="agenda-time" name="agenda-time">
+                        <input type="time" class="form-control" id="agenda-time" name="agenda-time" value="<?= $data['waktu'] ?>">
                     </div>
                     <div class="mb-3">
                         <label for="agenda-title" class="form-label">Agenda</label>
-                        <input type="text" class="form-control" id="agenda-title" name="agenda-title">
+                        <input type="text" class="form-control" id="agenda-title" name="agenda-title" value="<?= $data['agenda'] ?>">
                     </div>
                     <div class="mb-3">
                         <label for="agenda-detail" class="form-label">Keterangan</label>
-                        <textarea class="form-control" id="agenda-detail" name="agenda-detail" rows="3"></textarea>
+                        <textarea class="form-control" id="agenda-detail" name="agenda-detail" rows="3"><?= $data['keterangan'] ?></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </form>

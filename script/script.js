@@ -59,9 +59,25 @@ function load_list_agenda(){
 }
 
 function agenda_check(role){
-    if(role == "hrd"){
-        $("modifier-button").show();
-    }else if(role == "calon"){
-        $("modifier-button").hide();
+    $(document).ready(function() {
+        if(role == "hrd"){
+            $(".modifier-button").show();
+        }else if(role == "calon"){
+            $(".modifier-button").hide();
+        }
+    });
+}
+
+function edit_agenda(key){
+    location.href="./change-agenda.php?key=" + key;
+}
+
+function hapus_agenda(key){
+    var isDelete = confirm("Delete Data?");
+
+    if(isDelete){
+        location.href="../script/delete-agenda.php?key=" + key;
+    }else{
+        location.href="../page/list-agenda.php";
     }
 }
